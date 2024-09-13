@@ -1,0 +1,216 @@
+
+Kodu kopyala
+<%- include("adminpartials/_sidebar") %>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <%- include("adminpartials/_navbar") %>    
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> Rezervasyonlar Tablosu </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/tables">Tables</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Rezervasyonlar</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Rezervasyon Tablosu Başlangıç -->
+      <% if (reservations && reservations.length > 0) { %> 
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Rezervasyonlar</h4>
+            <p class="card-description">Tüm rezervasyonları içerir</p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th> Check-In </th>
+                    <th> Check-Out </th>
+                    <th> Yetişkinler </th>
+                    <th> Çocuklar </th>
+                    <th> Fiyat </th>
+                    <th> Güncelle </th>
+                    <th> Sil </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% for (reservation of reservations) { %> 
+                  <tr>
+                    <td> <%= reservation.checkInDate.toLocaleDateString() %> </td>
+                    <td> <%= reservation.checkOutDate.toLocaleDateString() %> </td>
+                    <td> <%= reservation.adults %> </td>
+                    <td> <%= reservation.children %> </td>
+                    <td> <%= reservation.price %> </td>
+                    <td>
+                      <button 
+                        type="button" 
+                        class="btn btn-warning edit-button" 
+                        data-toggle="modal" 
+                        data-target="#editReservationModal" 
+                        data-id="<%= reservation._id %>" 
+                        data-checkin="<%= reservation.checkInDate %>" 
+                        data-checkout="<%= reservation.checkOutDate %>" 
+                        data-adults="<%= reservation.adults %>" 
+                        data-children="<%= reservation.children %>" 
+                        data-price="<%= reservation.price %>">
+                        Düzenle
+                      </button>
+                    </td>
+                    <td>
+                      <button 
+                      type="button" 
+                      class="btn btn-danger delete-reservation-button" 
+                      data-id="<%= reservation._id %>" 
+                      data-checkin="<%= reservation.checkInDate.toLocaleDateString() %>">
+                      Sil
+                    </button>
+                    </td>
+                  </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } else { %> 
+      <p class="no-data-message">Gösterilecek rezervasyon yok.</p>
+      <% } %>
+      <!-- Rezervasyon Tablosu Bitiş -->
+
+<!-- Modal -->
+<div class="modal fade" id="editReservationModal" tabindex="-1" role="dialog" aria-labelledby="editReservationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editReservationModalLabel">Rezervasyonu Düzenle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Düzenleme Formu -->
+        <form id="editReservationForm" class="forms-sample">
+          <div class="form-group">
+            <label for="editCheckIn">Check-In Tarihi</label>
+            <input type="date" class="form-control" id="editCheckIn" name="checkInDate" required>
+          </div>
+          <div class="form-group">
+            <label for="editCheckOut">Check-Out Tarihi</label>
+            <input type="date" class="form-control" id="editCheckOut" name="checkOutDate" required>
+          </div>
+          <div class="form-group">
+            <label for="editAdults">Yetişkinler</label>
+            <input type="number" class="form-control" id="editAdults" name="adults" required>
+          </div>
+          <div class="form-group">
+            <label for="editChildren">Çocuklar</label>
+            <input type="number" class="form-control" id="editChildren" name="children" required>
+          </div>
+          <div class="form-group">
+            <label for="editPrice">Ücret</label>
+            <select class="form-control" id="editPrice" name="price" required>
+              <option value="500TL">500TL</option>
+              <option value="750TL">750TL</option>
+              <option value="1000TL">1000TL</option>
+              <option value="2000TL">2000TL</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Rezervasyonu Güncelle</button>
+          <div id="editReservationMessage" class="mt-3"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const deleteReservationButtons = document.querySelectorAll('.delete-reservation-button');
+    
+    deleteReservationButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const confirmed = confirm(`${button.getAttribute('data-checkin')} tarihli rezervasyonu silmek istediğinize emin misiniz?`);
+        if (confirmed) {
+          const reservationId = button.getAttribute('data-id');
+          
+          try {
+            const response = await fetch(`/reservation/deleteReservation/${reservationId}`, {
+              method: 'DELETE',
+            });
+            
+            if (response.ok) {
+              alert('Rezervasyon başarıyla silindi.');
+              location.reload(); // Sayfayı yenile
+            } else {
+              alert('Silme işlemi sırasında bir hata oluştu.');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Sunucu hatası.');
+          }
+        }
+      });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.edit-button');
+    const editForm = document.getElementById('editReservationForm');
+    
+    editButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('editCheckIn').value = button.getAttribute('data-checkin').split('T')[0];
+        document.getElementById('editCheckOut').value = button.getAttribute('data-checkout').split('T')[0];
+        document.getElementById('editAdults').value = button.getAttribute('data-adults');
+        document.getElementById('editChildren').value = button.getAttribute('data-children');
+        document.getElementById('editPrice').value = button.getAttribute('data-price');
+        
+        editForm.setAttribute('data-id', button.getAttribute('data-id'));
+      });
+    });
+
+    document.getElementById('editReservationForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      const updatedReservation = {
+        checkInDate: document.getElementById('editCheckIn').value,
+        checkOutDate: document.getElementById('editCheckOut').value,
+        adults: document.getElementById('editAdults').value,
+        children: document.getElementById('editChildren').value,
+        price: document.getElementById('editPrice').value
+      };
+      
+      const reservationId = editForm.getAttribute('data-id');
+      
+      try {
+        const response = await fetch(`/reservation/updateReservation/${reservationId}`, { 
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedReservation)
+        });
+    
+        if (response.ok) {
+          document.getElementById('editReservationMessage').innerText = 'Rezervasyon başarıyla güncellendi!';
+          location.reload();
+        } else {
+          document.getElementById('editReservationMessage').innerText = 'Güncelleme sırasında hata oluştu!';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('editReservationMessage').innerText = 'Sunucu hatası!';
+      }
+    });
+  });
+</script>
+
+    </div>
+    <!-- content-wrapper ends -->
+    <%- include("adminpartials/_footer") %>
+  </div>
+</div>

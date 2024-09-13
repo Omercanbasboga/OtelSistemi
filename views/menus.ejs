@@ -1,0 +1,37 @@
+<%- include("partials/_header") %>
+<section class="w3l-breadcrumb">
+    <div class="breadcrum-bg py-sm-5 py-4">
+        <div class="container py-lg-3">
+
+            <h2>Menü</h2>
+            <p><a href="/">Home</a> &nbsp; / &nbsp; Menü</p>
+
+        </div>
+    </div>
+</section>
+<section class="team py-5" id="team"></section>
+	<div class="container py-lg-4 py-sm-3">
+        <h3 class="title-big text-center mb-md-5 mb-4">Menü</h3>
+		<div class="row inner-sec-w3layouts-w3pvt-lauinfo">
+            <% for (menuitem of menus) { %> 
+                <div class="col-md-3 col-6">
+                    <div class="team-grids text-center">
+                        <img src="<%= menuitem.img %>" class="img-fluid" alt="">
+                        <div class="team-info">
+                            <div class="caption">
+                                <h4><%= menuitem.name %></h4>
+                                <h5><%= menuitem.category %></h5>
+                                <h6><%= menuitem.price %></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <p><%=menuitem.taste%></p>
+                    <p><%=menuitem.ingredients%></p>
+                    <p><%=menuitem.desc%></p>
+                </div>
+                <% } %>
+		</div>
+	</div>
+</section>
+
+<%- include("partials/_footer") %>

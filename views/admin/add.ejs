@@ -1,0 +1,247 @@
+<%- include("adminpartials/_sidebar") %>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <%- include("adminpartials/_navbar") %>    
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      
+      <!-- Personel Ekleme Formu Başlangıç -->
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Personel Ekle</h4>
+            <p class="card-description">Personel eklemek için form</p>
+            <form id="personForm" class="forms-sample" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="personName">Ad Soyad</label>
+                <input type="text" class="form-control" id="personName" name="name" placeholder="Personelin adı..." required>
+              </div>
+              <div class="form-group">
+                <label for="personAge">Yaş</label>
+                <input type="number" class="form-control" id="personAge" name="age" placeholder="Personelin yaşı..." required>
+              </div>
+              <div class="form-group">
+                <label for="personWork">Mesleği</label>
+                <select class="form-control" id="personWork" name="work" required>
+                  <option value="Founder and CEO">Kurucu ve CEO</option>
+                  <option value="Partner & co-founder">Ortak ve Kurucu Ortak</option>
+                  <option value="Chairmen">Yönetim Kurulu Başkanı</option>
+                  <option value="Manager">Müdür</option>
+                  <option value="chef">Şef</option>
+                  <option value="housekeeper">Oda Sorumlusu</option>
+                  <option value="receptionist">Resepsiyonist</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="personMobile">Telefon No</label>
+                <input type="text" class="form-control" id="personMobile" name="mobile" placeholder="Personelin telefon numarası..." required>
+              </div>
+              <div class="form-group">
+                <label for="personAddress">Adres</label>
+                <input type="text" class="form-control" id="personAddress" name="address" placeholder="Personelin adresi..." required>
+              </div>
+              <div class="form-group">
+                <label for="personTestimonail">Adres</label>
+                <input type="text" class="form-control" id="personTestimonail" name="testimonail" placeholder="Personelin testimonaili..." required>
+              </div>
+              <div class="form-group">
+                <label for="personEmail">Mail Adresi</label>
+                <input type="email" class="form-control" id="personEmail" name="email" placeholder="Personelin e-posta adresi..." required>
+              </div>
+              <div class="form-group">
+                <label for="personPassword">Şifre</label>
+                <input type="password" class="form-control" id="personPassword" name="password" placeholder="Personelin giriş şifresi..." required>
+              </div>
+              <div class="form-group">
+                <label for="personImage">Resim Yükle</label>
+                <input type="file" class="form-control" id="personImage" name="img" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-primary me-2">Personel Ekle</button>
+              <div id="personMessage" class="mt-3"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Personel Ekleme Formu Bitiş -->
+      
+      <!-- Oda Ekleme Formu Başlangıç -->
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Oda Ekle</h4>
+            <p class="card-description">Oda eklemek için form</p>
+            <form id="roomForm" class="forms-sample" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="roomTitle">Oda Başlığı</label>
+                <input type="text" class="form-control" id="roomTitle" name="title" placeholder="Oda başlığı..." required minlength="3" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="roomPrice">Fiyat</label>
+                <input type="number" class="form-control" id="roomPrice" name="price" placeholder="Oda fiyatı..." required min="0">
+              </div>
+      
+              <div class="form-group">
+                <label for="maxPeople">Maksimum Kişi Sayısı</label>
+                <input type="number" class="form-control" id="maxPeople" name="maxPeople" placeholder="Maksimum kişi sayısı..." required min="1">
+              </div>
+              <div class="form-group">
+                <label for="roomDescription">Açıklama</label>
+                <textarea class="form-control" id="roomDescription" name="desc" placeholder="Oda açıklaması..." required maxlength="500"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="roomStatus">Oda Durumu</label>
+                <select class="form-control" id="roomStatus" name="status" required>
+                  <option value="clean">Temiz</option>
+                  <option value="dirty">Kirli</option>
+                  <option value="awaiting cleaning">Temizlik Bekliyor</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="roomImage">Resim Yükle</label>
+                <input type="file" class="form-control" id="roomImage" name="img" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-primary me-2">Oda Ekle</button>
+              <div id="roomMessage" class="mt-3"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Oda Ekleme Formu Bitiş -->
+      
+      <!-- Menü Ekleme Formu Başlangıç -->
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Yemek veya İçecek Ekle</h4>
+            <p class="card-description">Menü öğesi eklemek için form</p>
+            <form id="menuForm" class="forms-sample" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="menuItemName">Adı</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Menü öğesi adı..." required>
+            </div>
+            <div class="form-group">
+                <label for="menuItemPrice">Fiyat</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Fiyat..." required min="0">
+            </div>
+            <div class="form-group">
+                <label for="menuItemTaste">Tat</label>
+                <select class="form-control" id="taste" name="taste" required>
+                    <option value="sweet">Tatlı</option>
+                    <option value="spicy">Baharatlı</option>
+                    <option value="sour">Ekşi</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="menuItemIngredients">İçindekiler</label>
+                <input type="text" class="form-control" id="ingredients" name="ingredients" placeholder="İçindekiler, virgülle ayırın..." required>
+            </div>
+            <div class="form-group">
+                <label for="menuItemCategory">Kategori</label>
+                <select class="form-control" id="category" name="category" required>
+                    <option value="appetizer">Başlangıç</option>
+                    <option value="main course">Ana Yemek</option>
+                    <option value="dessert">Tatlı</option>
+                    <option value="beverage">İçecek</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="menuItemDescription">Açıklama</label>
+                <textarea class="form-control" id="desc" name="desc" placeholder="Menü öğesi açıklaması..." required rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="itemImage">Resim Yükle</label>
+              <input type="file" class="form-control" id="itemImage" name="img" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Menü Öğesi Ekle</button>
+            <div id="menuMessage" class="mt-3"></div>
+        </form>
+          </div>
+        </div>
+      </div>
+      <!-- Menü Ekleme Formu Bitiş -->
+    </div>
+    <!-- content-wrapper ends -->
+    <%- include("adminpartials/_footer") %>
+  </div>
+</div>
+
+<script>
+  // Personel Ekleme Formu İşleyici
+  document.getElementById('personForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+    const form = event.target;
+    const formData = new FormData(form); // Form verileri ve dosyalar otomatik olarak alınır
+    const messageDiv = document.getElementById('personMessage');
+  
+    try {
+      const response = await fetch('/person/addPerson', {
+        method: 'POST',
+        body: formData 
+      });
+  
+      const result = await response.json();
+      
+      if (!response.ok) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+      } else {
+        messageDiv.innerHTML = `<div class="alert alert-success">Personel başarıyla eklendi!</div>`;
+        form.reset();
+      }
+    } catch (error) {
+      messageDiv.innerHTML = `<div class="alert alert-danger">Sunucu hatası: Lütfen tekrar deneyin.</div>`;
+    }
+  });
+
+  // Oda Ekleme Formu İşleyici
+  document.getElementById('roomForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+    const form = event.target;
+    const formData = new FormData(form);
+    const messageDiv = document.getElementById('roomMessage');
+    
+    try {
+      const response = await fetch('/room/addRoom', {
+        method: 'POST',
+        body: formData 
+      });
+
+      const result = await response.json();
+      
+      if (!response.ok) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+      } else {
+        messageDiv.innerHTML = `<div class="alert alert-success">Oda başarıyla eklendi!</div>`;
+        form.reset();
+      }
+    } catch (error) {
+      messageDiv.innerHTML = `<div class="alert alert-danger">Sunucu hatası: Lütfen tekrar deneyin.</div>`;
+    }
+  });
+
+ // Menü Ekleme Formu İşleyici
+  document.getElementById('menuForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+    const form = event.target;
+    const formData = new FormData(form);
+    const messageDiv = document.getElementById('menuMessage');
+    
+    try {
+      const response = await fetch('/menu/addMenuItem', {
+        method: 'POST',
+        body: formData 
+      });
+      const result = await response.json();
+      
+      if (!response.ok) {
+        messageDiv.innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+      } else {
+        messageDiv.innerHTML = `<div class="alert alert-success">Menü öğesi başarıyla eklendi!</div>`;
+        form.reset();
+      }
+    } catch (error) {
+      messageDiv.innerHTML = `<div class="alert alert-danger">Sunucu hatası: Lütfen tekrar deneyin.</div>`;
+    }
+  }); 
+</script>

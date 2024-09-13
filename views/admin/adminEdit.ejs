@@ -1,0 +1,659 @@
+<%- include("adminpartials/_sidebar") %>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <%- include("adminpartials/_navbar") %>    
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> Basic Tables </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/tables">Tables</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Personel Tablosu Başlangıç -->
+      <% if (persons && persons.length > 0) { %> 
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Personel Tablosu</h4>
+            <p class="card-description">Personel bilgilerini içerir</p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th> # </th>
+                    <th> İsim </th>
+                    <th> Yaş </th>
+                    <th> İş </th>
+                    <th> Telefon No </th>
+                    <th> E-Mail </th>
+                    <th> Adres </th>
+                    <th> İşe Giriş Tarihi </th>
+                    <th> Güncelle </th>
+                    <th> Sil </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% for (person of persons) { %> 
+                  <tr>
+                    <td class="py-1">
+                      <img src="<%= person.img %>" alt="image" />
+                    </td>
+                    <td> <%= person.name %> </td>
+                    <td> <%= person.age || 'Bilinmiyor' %> </td>
+                    <td> <%= person.work || 'Bilinmiyor' %> </td>
+                    <td> <%= person.mobile || 'Bilinmiyor' %> </td>
+                    <td> <%= person.email || 'Bilinmiyor' %> </td>
+                    <td> <%= person.address || 'Bilinmiyor' %> </td>
+                    <td>
+                      <button 
+                        type="button" 
+                        class="btn btn-warning edit-button" 
+                        data-toggle="modal" 
+                        data-target="#editPersonModal" 
+                        data-id="<%= person._id %>" 
+                        data-name="<%= person.name %>" 
+                        data-age="<%= person.age %>" 
+                        data-work="<%= person.work %>" 
+                        data-mobile="<%= person.mobile %>" 
+                        data-email="<%= person.email %>" 
+                        data-address="<%= person.address %>" 
+                        data-testimonail="<%= person.testimonail %>">
+                        Düzenle
+                      </button>
+                    </td>
+                    <td>
+                      <button 
+                      type="button" 
+                      class="btn btn-danger delete-person-button" 
+                      data-id="<%= person._id %>" 
+                      data-name="<%= person.name %>">
+                      Sil
+                    </button>
+                    </td>
+                  </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } else { %> 
+      <p class="no-data-message">Gösterilecek kişi yok.</p>
+      <% } %>
+      <!-- Personel Tablosu Bitiş -->
+
+<!-- Modal -->
+<div class="modal fade" id="editPersonModal" tabindex="-1" role="dialog" aria-labelledby="editPersonModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPersonModalLabel">Personel Öğesini Düzenle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Düzenleme Formu -->
+        <form id="editPersonForm" class="forms-sample">
+          <div class="form-group">
+            <label for="editPersonName">Ad Soyad</label>
+            <input type="text" class="form-control" id="editName" name="name" placeholder="Personelin adı..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonAge">Yaş</label>
+            <input type="number" class="form-control" id="editAge" name="age" placeholder="Personelin yaşı..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonWork">Meslek</label>
+            <select class="form-control" id="editWork" name="work" required>
+              <option value="Founder and CEO">Kurucu ve CEO</option>
+              <option value="Partner & co-founder">Ortak ve Kurucu Ortak</option>
+              <option value="Chairmen">Yönetim Kurulu Başkanı</option>
+              <option value="Manager">Müdür</option>
+              <option value="chef">Şef</option>
+              <option value="housekeeper">Oda Sorumlusu</option>
+              <option value="receptionist">Resepsiyonist</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editPersonMobile">Telefon No</label>
+            <input type="text" class="form-control" id="editMobile" name="mobile" placeholder="Personelin telefon numarası..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonAddress">Adres</label>
+            <input type="text" class="form-control" id="editAddress" name="address" placeholder="Personelin adresi..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonTestimonail">Testimonail</label>
+            <input type="text" class="form-control" id="editTestimonail" name="testimonail" placeholder="Personelin testimonaili..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonEmail">E-Mail</label>
+            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Personelin e-posta adresi..." required>
+          </div>
+          <div class="form-group">
+            <label for="editPersonPassword">Şifre</label>
+            <input type="password" class="form-control" id="editPassword" name="password" placeholder="Yeni şifre (isteğe bağlı)...">
+          </div>
+          <button type="submit" class="btn btn-primary">Personel Öğesini Güncelle</button>
+          <div id="editPersonMessage" class="mt-3"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+       <!-- Menü Tablosu Başlangıç -->
+       <% if (menus && menus.length > 0) { %> 
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Menü Tablosu</h4>
+              <p class="card-description">Menüdeki yiyecek ve içecekler</p>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th> # </th>
+                      <th> Yemek/İçecek Adı </th>
+                      <th> Fiyatı </th>
+                      <th> Kategori </th>
+                      <th> Açıklama </th>
+                      <th> Güncelle </th>
+                      <th> Sil </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <% for (menuitem of menus) { %> 
+                    <tr>
+                      <td class="py-1">
+                        <img src="<%= menuitem.img %>" alt="image" />
+                      </td>
+                      <td> <%= menuitem.name %> </td>
+                      <td> <%= menuitem.price %> </td>
+                      <td> <%= menuitem.category %> </td>
+                      <td> <%= menuitem.desc %> </td>
+                      <td>
+                          <button 
+                          type="button" 
+                          class="btn btn-warning edit-button" 
+                          data-toggle="modal" 
+                          data-target="#editMenuModal" 
+                          data-id="<%= menuitem._id %>" 
+                          data-name="<%= menuitem.name %>" 
+                          data-price="<%= menuitem.price %>" 
+                          data-taste="<%= menuitem.taste %>" 
+                          data-ingredients="<%= menuitem.ingredients.join(', ') %>" 
+                          data-category="<%= menuitem.category %>" 
+                          data-desc="<%= menuitem.desc %>">
+                          Güncelle
+                        </button>
+                      </td>   
+                      <td>
+                        <button 
+                        type="button" 
+                        class="btn btn-danger delete-menu-button" 
+                        data-id="<%= menuitem._id %>" 
+                        data-name="<%= menuitem.name %>">
+                        Sil
+                      </button>
+                      </td>                     
+                    </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } else { %> 
+        <p class="no-data-message">Gösterilecek yiyecek veya içecek yok.</p>
+        <% } %>
+        <!-- Menü Tablosu Bitiş -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="editMenuModal" tabindex="-1" role="dialog" aria-labelledby="editMenuModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editMenuModalLabel">Menü Öğesi Düzenle</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Düzenleme Formu -->
+          <form id="editMenuForm" class="forms-sample">
+            <div class="form-group">
+              <label for="editMenuItemName">Adı</label>
+              <input type="text" class="form-control" id="editName" name="name" placeholder="Menü öğesi adı..." required>
+            </div>
+            <div class="form-group">
+              <label for="editMenuItemPrice">Fiyat</label>
+              <input type="number" class="form-control" id="editPrice" name="price" placeholder="Fiyat..." required min="0">
+            </div>
+            <div class="form-group">
+              <label for="editMenuItemTaste">Tat</label>
+              <select class="form-control" id="editTaste" name="taste" required>
+                <option value="sweet">Tatlı</option>
+                <option value="spicy">Baharatlı</option>
+                <option value="sour">Ekşi</option>
+              </select>
+            </div>
+          
+            <div class="form-group">
+              <label for="editMenuItemIngredients">İçindekiler</label>
+              <input type="text" class="form-control" id="editIngredients" name="ingredients" placeholder="İçindekiler, virgülle ayırın..." required>
+            </div>
+            <div class="form-group">
+              <label for="editMenuItemCategory">Kategori</label>
+              <select class="form-control" id="editCategory" name="category" required>
+                <option value="appetizer">Başlangıç</option>
+                <option value="main course">Ana Yemek</option>
+                <option value="dessert">Tatlı</option>
+                <option value="beverage">İçecek</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="editMenuItemDescription">Açıklama</label>
+              <textarea class="form-control" id="editDesc" name="desc" placeholder="Menü öğesi açıklaması..." required rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Menü Öğesini Güncelle</button>
+            <div id="editMenuMessage" class="mt-3"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+      <!-- Room Tablosu Başlangıç -->
+      <% if (rooms && rooms.length > 0) { %> 
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Oda Tablosu</h4>
+              <p class="card-description">Oda bilgilerini içerir</p>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Oda Adı</th>
+                      <th>Fiyat</th>
+                      <th>Maksimum Kişi</th>
+                      <th>Açıklama</th>
+                      <th>Oluşturulma Tarihi</th>
+                      <th>Güncellenme Tarihi</th>
+                      <th>İşlemler</th>
+                      <th>Güncelle</th>
+                      <th>Sil</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <% for (room of rooms) { %> 
+                    <tr>
+                      <td class="py-1">
+                        <img src="<%= room.img %>" alt="image" />
+                      </td>
+                      <td><%= room.title %></td>
+                      <td><%= room.price %> TL</td>
+                      <td><%= room.maxPeople %></td>
+                      <td><%= room.status %></td>
+                      <td><%= new Date(room.createdAt).toLocaleString() %></td>
+                      <td><%= new Date(room.updatedAt).toLocaleString() %></td>
+                      <td>
+                        <button 
+                          class="btn btn-warning edit-room-button" 
+                          data-id="<%= room._id %>" 
+                          data-title="<%= room.title %>" 
+                          data-price="<%= room.price %>" 
+                          data-maxpeople="<%= room.maxPeople %>" 
+                          data-desc="<%= room.desc %>" 
+                          data-status="<%= room.status %>">Güncelle</button>
+                      </td>
+                      <td>  
+                        <button 
+                          class="btn btn-danger delete-room-button" 
+                          data-id="<%= room._id %>">Sil</button>
+                      </td>
+                    </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oda Güncelleme Modalı -->
+<div class="modal fade" id="editRoomModal" tabindex="-1" role="dialog" aria-labelledby="editRoomModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editRoomModalLabel">Oda Bilgilerini Güncelle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editRoomForm">
+          <div class="form-group">
+            <label for="editTitle">Oda Adı</label>
+            <input type="text" class="form-control" id="editTitle" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="editPrice">Fiyat</label>
+            <input type="number" class="form-control" id="editPrice" name="price" required min="0">
+          </div>
+          <div class="form-group">
+            <label for="editMaxPeople">Maksimum Kişi</label>
+            <input type="number" class="form-control" id="editMaxPeople" name="maxPeople" required min="1">
+          </div>
+          <div class="form-group">
+            <label for="editDesc">Açıklama</label>
+            <textarea class="form-control" id="editDesc" name="desc" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editStatus">Durum</label>
+            <select class="form-control" id="editStatus" name="status" required>
+              <option value="clean">Temiz</option>
+              <option value="dirty">Kirli</option>
+              <option value="awaiting cleaning">Temizlik Bekliyor</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Güncelle</button>
+          <div id="editRoomMessage" class="mt-3"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% } else { %> 
+        <p class="no-data-message">Gösterilecek Oda yok.</p>
+        <% } %>
+        <!-- Rooms Tablosu Bitiş -->
+    
+<script>
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const deletePersonButtons = document.querySelectorAll('.delete-person-button');
+    
+    deletePersonButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const confirmed = confirm(`${button.getAttribute('data-name')} adlı personeli silmek istediğinize emin misiniz?`);
+        if (confirmed) {
+          const personId = button.getAttribute('data-id');
+          
+          try {
+            const response = await fetch(`/person/deletePerson/${personId}`, {
+              method: 'DELETE',
+            });
+            
+            if (response.ok) {
+              alert('Personel başarıyla silindi.');
+              location.reload(); // Sayfayı yenile
+            } else {
+              alert('Silme işlemi sırasında bir hata oluştu.');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Sunucu hatası.');
+          }
+        }
+      });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const deleteMenuButtons = document.querySelectorAll('.delete-menu-button');
+    
+    deleteMenuButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const confirmed = confirm(`${button.getAttribute('data-name')} adlı menü öğesini silmek istediğinize emin misiniz?`);
+        if (confirmed) {
+          const menuId = button.getAttribute('data-id');
+          
+          try {
+            const response = await fetch(`/menu/deleteMenuItem/${menuId}`, {
+              method: 'DELETE',
+            });
+            
+            if (response.ok) {
+              alert('Menü öğesi başarıyla silindi.');
+              location.reload(); // Sayfayı yenile
+            } else {
+              alert('Silme işlemi sırasında bir hata oluştu.');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Sunucu hatası.');
+          }
+        }
+      });
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const deleteRoomButtons = document.querySelectorAll('.delete-room-button');
+    
+    deleteRoomButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const roomName = button.getAttribute('data-title');
+        const confirmed = confirm(`${roomName} adlı odayı silmek istediğinize emin misiniz?`);
+  
+        if (confirmed) {
+          const roomId = button.getAttribute('data-id');
+          
+          try {
+            const response = await fetch(`/room/deleteRoom/${roomId}`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+  
+            if (response.ok) {
+              alert('Oda başarıyla silindi.');
+              location.reload(); // Sayfayı yenile
+            } else {
+              alert('Silme işlemi sırasında bir hata oluştu.');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Sunucu hatası.');
+          }
+        }
+      });
+    });
+  });
+    
+  const editButtons = document.querySelectorAll('.edit-button');
+  const editForm = document.getElementById('editMenuForm');
+  
+  editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      document.getElementById('editName').value = button.getAttribute('data-name');
+      document.getElementById('editPrice').value = button.getAttribute('data-price');
+      document.getElementById('editTaste').value = button.getAttribute('data-taste');
+      document.getElementById('editIsDrink').checked = button.getAttribute('data-is-drink') === 'true';
+      document.getElementById('editIngredients').value = button.getAttribute('data-ingredients');
+      document.getElementById('editCategory').value = button.getAttribute('data-category');
+      document.getElementById('editDesc').value = button.getAttribute('data-desc');
+  
+      // Güncelleme isteğinde kullanılacak ID'yi dinamik olarak formda saklayın
+      editForm.setAttribute('data-id', button.getAttribute('data-id'));
+    });
+  });
+
+  // editMenuForm başlangıç
+  document.getElementById('editMenuForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const updatedMenuItem = {
+      name: document.getElementById('editName').value,
+      price: document.getElementById('editPrice').value,
+      taste: document.getElementById('editTaste').value,
+      is_drink: document.getElementById('editIsDrink').checked,
+      ingredients: document.getElementById('editIngredients').value,
+      category: document.getElementById('editCategory').value,
+      desc: document.getElementById('editDesc').value
+    };
+  
+    const menuId = editForm.getAttribute('data-id'); // Dinamik olarak alınan ID
+  
+    try {
+      const response = await fetch(`/menu/updateMenuItem/${menuId}`, { 
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedMenuItem)
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        document.getElementById('editMenuMessage').innerText = 'Menü öğesi başarıyla güncellendi!';
+        // Sayfayı yenileme veya başka işlemler
+      } else {
+        document.getElementById('editMenuMessage').innerText = 'Güncelleme sırasında hata oluştu!';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById('editMenuMessage').innerText = 'Sunucu hatası!';
+    }
+  });
+//PERSON
+document.addEventListener('DOMContentLoaded', () => {
+  const editButtons = document.querySelectorAll('.edit-button');
+  const editForm = document.getElementById('editPersonForm');
+  
+  editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Form alanlarını modal butonun data-attribute'leri ile doldur
+      document.getElementById('editName').value = button.getAttribute('data-name');
+      document.getElementById('editAge').value = button.getAttribute('data-age');
+      document.getElementById('editWork').value = button.getAttribute('data-work');
+      document.getElementById('editMobile').value = button.getAttribute('data-mobile');
+      document.getElementById('editEmail').value = button.getAttribute('data-email');
+      document.getElementById('editAddress').value = button.getAttribute('data-address');
+      document.getElementById('editTestimonail').value = button.getAttribute('data-testimonail');
+      
+      // Güncelleme isteğinde kullanılacak ID'yi dinamik olarak formda saklayın
+      editForm.setAttribute('data-id', button.getAttribute('data-id'));
+    });
+  });
+
+  // Formun gönderilmesini işleme
+  document.getElementById('editPersonForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const updatedPerson = {
+      name: document.getElementById('editName').value,
+      age: document.getElementById('editAge').value,
+      work: document.getElementById('editWork').value,
+      mobile: document.getElementById('editMobile').value,
+      email: document.getElementById('editEmail').value,
+      address: document.getElementById('editAddress').value,
+      testimonail: document.getElementById('editTestimonail').value,
+      password: document.getElementById('editPassword').value // Password can be optional
+    };
+    
+    const personId = editForm.getAttribute('data-id'); // Dinamik olarak alınan ID
+    
+    try {
+      const response = await fetch(`/person/updatePerson/${personId}`, { 
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedPerson)
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        document.getElementById('editPersonMessage').innerText = 'Personel başarıyla güncellendi!';
+        // Sayfayı yenileme veya başka işlemler
+      } else {
+        document.getElementById('editPersonMessage').innerText = 'Güncelleme sırasında hata oluştu!';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById('editPersonMessage').innerText = 'Sunucu hatası!';
+    }
+  });
+});
+
+//ROOM
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editRoomButtons = document.querySelectorAll('.edit-room-button');
+  const deleteRoomButtons = document.querySelectorAll('.delete-room-button');
+  const editRoomForm = document.getElementById('editRoomForm');
+  
+  // Güncelleme Butonlarına Tıklama Olayı
+  editRoomButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Modal'daki formu doldur
+      document.getElementById('editTitle').value = button.getAttribute('data-title');
+      document.getElementById('editPrice').value = button.getAttribute('data-price');
+      document.getElementById('editMaxPeople').value = button.getAttribute('data-maxpeople');
+      document.getElementById('editDesc').value = button.getAttribute('data-desc');
+      document.getElementById('editStatus').value = button.getAttribute('data-status');
+
+      // Formda ID'yi dinamik olarak sakla
+      editRoomForm.setAttribute('data-id', button.getAttribute('data-id'));
+
+      // Modal'ı aç
+      $('#editRoomModal').modal('show');
+    });
+  });
+
+  // Güncelleme Formunun Gönderilmesi
+  editRoomForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const updatedRoom = {
+      title: document.getElementById('editTitle').value,
+      price: document.getElementById('editPrice').value,
+      maxPeople: document.getElementById('editMaxPeople').value,
+      desc: document.getElementById('editDesc').value,
+      status: document.getElementById('editStatus').value,
+    };
+    
+    const roomId = editRoomForm.getAttribute('data-id'); // Dinamik olarak alınan ID
+    
+    try {
+      const response = await fetch(`/room/updateRoom/${roomId}`, { 
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedRoom)
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        document.getElementById('editRoomMessage').innerText = 'Oda başarıyla güncellendi!';
+        location.reload(); // Sayfayı yenile
+      } else {
+        document.getElementById('editRoomMessage').innerText = 'Güncelleme sırasında hata oluştu!';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById('editRoomMessage').innerText = 'Sunucu hatası!';
+    }
+  });
+});
+</script>
+
+    </div>
+    <!-- content-wrapper ends -->
+    <%- include("adminpartials/_footer") %>
+  </div>
+</div>

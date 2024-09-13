@@ -1,0 +1,42 @@
+<%- include("partials/_header") %>
+<section class="w3l-breadcrumb">
+    <div class="breadcrum-bg py-sm-5 py-4">
+        <div class="container py-lg-3">
+
+            <h2>Kadromuz</h2>
+            <p><a href="/">Home</a> &nbsp; / &nbsp; Kadromuz</p>
+
+        </div>
+    </div>
+</section>
+<section class="team py-5" id="team"></section>
+	<div class="container py-lg-4 py-sm-3">
+        <h3 class="title-big text-center mb-md-5 mb-4">Our Team</h3>
+		<div class="row inner-sec-w3layouts-w3pvt-lauinfo">
+            <% for (person of persons) { %> 
+                <div class="col-md-3 col-6">
+                    <div class="team-grids text-center">
+                        <img src="<%= person.img %>" class="img-fluid" alt="">
+                        <div class="team-info">
+                            <div class="caption">
+                                <h4><%= person.name %></h4>
+                                <h6><%= person.work %></h6>
+                                <h6><%= person.age %></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-icons-section text-center">
+                        <a class="fac" href="<%= person.facebookURL %>">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="twitter" href="<%= person.twitterURL %>">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <% } %>
+		</div>
+	</div>
+</section>
+
+<%- include("partials/_footer") %>

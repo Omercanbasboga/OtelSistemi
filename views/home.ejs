@@ -1,0 +1,367 @@
+<%- include("partials/_header") %>
+ <!-- main-slider -->
+ <section class="w3l-main-slider" id="home">
+     <div class="companies20-content">
+         <div class="owl-one owl-carousel owl-theme">
+             <div class="item">
+                 <li>
+                     <div class="slider-info banner-view bg bg2">
+                         <div class="banner-info">
+                             <div class="container">
+                                 <div class="banner-info-bg">
+                                     <h5>Konum cennetten bir parça. Sakin güzelliğinin tadını çıkarmak için hafta içi ziyaret etmeniz en iyisi.
+                                     </h5>
+                                     <a class="btn btn-style transparent-btn mt-sm-5 mt-4" href="/services"> 
+                                         Hizmetlerimiz</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             </div>
+             <div class="item">
+                 <li>
+                     <div class="slider-info  banner-view banner-top1 bg bg2">
+                         <div class="banner-info">
+                             <div class="container">
+                                 <div class="banner-info-bg">
+                                     <h5>Yeni otellerimiz, dünya barışını teşvik etmede öncü bir rol oynayacak.                                     </h5>
+                                     <a class="btn btn-style transparent-btn mt-sm-5 mt-4" href="/services"> Hizmetlerimiz</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             </div>
+             <div class="item">
+                 <li>
+                     <div class="slider-info banner-view banner-top2 bg bg2">
+                         <div class="banner-info">
+                             <div class="container">
+                                 <div class="banner-info-bg">
+                                     <h5>Çoğu otel personelini broşürlerle eğitir. Biz ise ekibimizi bale ile yetiştiriyoruz.
+                                     </h5>
+                                     <a class="btn btn-style transparent-btn mt-sm-5 mt-4" href="/services"> Hizmetlerimiz</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             </div>
+             <div class="item">
+                 <li>
+                     <div class="slider-info banner-view banner-top3 bg bg2">
+                         <div class="banner-info">
+                             <div class="container">
+                                 <div class="banner-info-bg">
+                                     <h5>İyi turizm, iyi otellerle başlar. Lüks otel odalarımızda unutulmaz bir deneyim yaşayın.
+                                     </h5>
+                                     <a class="btn btn-style transparent-btn mt-sm-5 mt-4" href="/services"> Hizmetlerimiz</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             </div>
+         </div>
+     </div>
+ </section>
+ <!-- /main-slider -->
+ <section class="w3l-availability-form" id="booking">
+    <div class="w3l-availability-form-main py-5">
+        <div class="container pt-lg-3 pb-lg-5">
+            <div class="forms-top">
+                <div class="form-right">
+                    <div class="form-inner-cont">
+                        <h3 class="title-small">Rezervasyon Oluştur</h3>
+                        <form id="reservationForm" class="signin-form">
+                            <div class="row book-form">
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Giriş Tarihi</label>
+                                    <input type="date" name="checkInDate" placeholder="Date" required="">
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Çıkış Tarihi</label>
+                                    <input type="date" name="checkOutDate" placeholder="Date" required="">
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Yetişkin</label>
+                                    <select class="selectpicker" name="adults">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                    </select>
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Çocuk</label>
+                                    <select class="selectpicker" name="children">
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                    </select>
+                                </div>
+                                <div class="form-input col-md-4 col-sm-6 mt-3">
+                                    <label>Ücret</label>
+                                    <select class="selectpicker" name="price">
+                                        <option>500TL</option>
+                                        <option>750TL</option>
+                                        <option>1000TL</option>
+                                        <option>2000TL</option>
+                                    </select>
+                                </div>
+                                <div class="bottom-btn col-md-4 col-sm-6 mt-3">
+                                    <label>Revervasyon Oluştur </label>
+                                    <button type="submit" class="btn btn-style btn-primary w-100 px-2">Rezervasyon Oluştur</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="responseMessage" style="margin-top: 20px; display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- //w3l-availability-form-section -->
+<!-- about -->
+<section class="w3l-about py-5">
+	<div class="container py-sm-4">
+		<div class="row">
+			<div class="col-lg-6 about-left mb-md-0 mb-5">
+				<h3 class="title-big">Tatil Köyümüzde Ufak Bir Mola Verin</h3>
+				<h5>Misafirlerimiz İçin En İyisini İstiyoruz.</h5>
+				<p class="mt-3">Doğa ve denizle iç içe, huzurun tam ortasında bir tatil deneyimi sunuyoruz. Eşsiz manzaralar eşliğinde, sakinliği ve konforu bir arada bulabileceğiniz otelimizde, her anı unutulmaz kılmak için sizi bekliyoruz. Doğanın dinginliğiyle denizin ferahlığını bir arada yaşayın.</p>
+				<a href="/about" class="btn btn-style btn-primary mt-sm-5 mt-4">Hakkımızda</a>
+			</div>
+			<div class="col-lg-6 about-right position-relative mt-lg-0 mt-5">
+				<img src="/images/top.jpg" alt="" class="img-fluid img-border mt-4" />
+				<img src="/images/bottom.jpg" alt="" class="img-fluid position-absolute img-position" />
+			</div>
+		</div>
+	</div>
+</section>
+<!-- //about -->
+<div class="best-rooms py-5">
+    <div class="container py-lg-5 py-sm-4">
+        <h3 class="title-big text-center">En iyi Odalar</h3>
+        <div class="ban-content-inf row py-lg-3">
+            <div class="maghny-gd-1 col-lg-6">
+                <div class="maghny-grid">
+                    <figure class="effect-lily">
+                        <img class="img-fluid" src="/images/room1.jpg" alt="">
+                        <figcaption class="w3set-hny">
+                            <div>
+                                <h4 class="top-text">Doğa ile iç içe
+                                    <span>Huzurlu Bir Mola İçin Otel Projesi</span></h4>
+                                <p>500 Türk Lirasından başlayan fiyatlarla  </p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <div class="room-info">
+                        <h3 class="room-title"><a href="/rooms">Otel Projesi</a></h3>
+                        <ul class="mb-3">
+                            <li><span class="fa fa-users"></span> 2 Misafir </li>
+                            <li><span class="fa fa-bed"></span> Çift Kişilik Yatak</li>
+                            <li><span class="fa fa-bed"></span> Ergonomik</li>
+                        </ul>
+                        <p>
+                            İster eşinizle, ister ailenizle ya da tek başınıza gelin, şık ve konforlu odalarımızda hayatınızın en unutulmaz deneyimini yaşayın.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="maghny-gd-1 col-lg-6 mt-lg-0 mt-4">
+                <div class="row">
+                    <div class="maghny-gd-1 col-6">
+                        <div class="maghny-grid">
+                            <figure class="effect-lily border-radius">
+                                <img class="img-fluid" src="/images/room2.jpg" alt="" />
+                                <figcaption>
+                                    <div>
+                                        <h4>Aileler İçin <span> Odalar</span></h4>
+                                        <p>500 Tl</p>
+                                    </div>
+
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="maghny-gd-1 col-6">
+                        <div class="maghny-grid">
+                            <figure class="effect-lily border-radius">
+                                <img class="img-fluid" src="/images/room3.jpg" alt="" />
+                                <figcaption>
+                                    <div>
+                                        <h4>Çiftler İçin  <span> Odalar</span></h4>
+                                        <p>750 Tl</p>
+                                    </div>
+
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="maghny-gd-1 col-6 mt-4">
+                        <div class="maghny-grid">
+                            <figure class="effect-lily border-radius">
+                                <img class="img-fluid" src="/images/room4.jpg" alt="" />
+                                <figcaption>
+                                    <div>
+                                        <h4> Lüx <span> Odalar</span></h4>
+                                        <p>1000 Tl </p>
+                                    </div>
+
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="maghny-gd-1 col-6 mt-4">
+                        <div class="maghny-grid">
+                            <figure class="effect-lily border-radius">
+                                <img class="img-fluid" src="/images/room5.jpg" alt="" />
+                                <figcaption>
+                                    <div>
+                                        <h4>Kral Dairesi <span> Odaları</span></h4>
+                                        <p>2000 Tl </p>
+                                    </div>
+
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="w3l-index3">
+    <div class="midd-w3 py-5">
+        <div class="container py-lg-5 py-md-3">
+            <div class="row">
+                <div class="col-lg-6 left-wthree-img text-righ">
+                    <div class="position-relative">
+                        <img src="/images/videobg.jpg" alt="" class="img-fluid" />
+                        <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
+                            <span class="video-play-icon">
+                                <span class="fa fa-play"></span>
+                            </span>
+                        </a>
+                        <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                            <iframe src="https://player.vimeo.com/video/246941769" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-lg-0 mt-5 about-right-faq align-self">
+                    <h6>Konumlarımızı keşfedin
+
+                    </h6>
+                    <h3 class="title-big">220 Yıllık Otel ve Tatil Köyü Deneyimi
+                    </h3>
+                    <p class="mt-3">Sizlere harika bir deneyimin garantisini veriyoruz.</p>
+                    <ul class="w3l-right-book mt-4">
+                        <li><span class="fa fa-check" aria-hidden="true"></span>Tüm müşterilerimiz için en iyisini yapıyoruz
+                        </li>
+                        <li><span class="fa fa-check" aria-hidden="true"></span>Lüks Tatil Köyü Otellerimizi Takip Edin
+                        </li>
+                        <li><span class="fa fa-check" aria-hidden="true"></span>Lüks oteller ve en iyi tatil köyleri
+                        </li>
+                        <li><span class="fa fa-check" aria-hidden="true"></span>Çift kişilik odalar ve aile odaları
+                        </li>
+                        <li><span class="fa fa-check" aria-hidden="true"></span>Lüks bir deneyimin keyfini çıkarın
+
+
+
+
+
+
+                        </li>
+                    </ul>
+                    <a href="/about" class="btn btn-style btn-primary mt-4">Paketlerimizi Keşfedin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- quotation -->
+<div class="quotation py-5">
+	<div class="container py-xl-5 py-lg-3">
+		<div class="welcome-left text-center py-md-5 py-3">
+			<h3>Keyifli bir lüks deneyimi yaşayın. Lokasyonlarımızı keşfedin. Rahatlayın ve tatilinizin tadını çıkarın.</h3>
+			<a href="/services" class="btn btn-style transparent-btn mt-sm-5 mt-4 mr-2">Hizmetlerimiz</a>
+			<a href="/contact" class="btn btn-style btn-primary mt-sm-5 mt-4">Bize Ulaşın</a>
+		</div>
+	</div>
+</div>
+<!-- //quotation -->
+
+<section class="w3l-logos py-5">
+    <div class="container py-lg-3">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view">
+                <img src="/images/logo1.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view">
+                <img src="/images/logo2.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view mt-sm-0 mt-4">
+                <img src="/images/logo3.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view mt-md-0 mt-4">
+                <img src="/images/logo4.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view mt-lg-0 mt-4">
+                <img src="/images/logo2.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 logo-view mt-lg-0 mt-4">
+                <img src="/images/logo1.jpg" alt="company-logo" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+<%- include("partials/_footer") %>
+
+<script>
+    document.getElementById('reservationForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Formun varsayılan davranışını engelle
+    
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+    
+        try {
+            const response = await fetch('/reservation/reservations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+    
+            const result = await response.json();
+            const messageDiv = document.getElementById('responseMessage');
+    
+            if (response.ok) {
+                messageDiv.style.color = 'green';
+                messageDiv.innerHTML = result.message || 'Rezervasyon başarıyla oluşturuldu!';
+                messageDiv.style.display = 'block';
+    
+                // 2 saniye sonra ana sayfaya yönlendirme
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                messageDiv.style.color = 'red';
+                messageDiv.innerHTML = result.error || 'Bir hata oluştu, lütfen tekrar deneyin.';
+                messageDiv.style.display = 'block';
+            }
+        } catch (error) {
+            const messageDiv = document.getElementById('responseMessage');
+            messageDiv.style.color = 'red';
+            messageDiv.innerHTML = 'Sunucuya bağlanırken bir hata oluştu.';
+            messageDiv.style.display = 'block';
+            console.error('İstek başarısız oldu:', error);
+        }
+    });
+    </script>
